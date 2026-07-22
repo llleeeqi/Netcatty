@@ -13,6 +13,7 @@ import { Button } from "../../ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../../ui/tooltip";
 import { Toggle, Select, SettingRow, SectionHeader, SettingCard, SettingsTabContent } from "../settings-ui";
 import { cn } from "../../../lib/utils";
+import { AppLockSettings } from "../AppLockSettings";
 
 interface CrashLogFile {
   fileName: string;
@@ -902,6 +903,8 @@ const SettingsSystemTab: React.FC<SettingsSystemTabProps> = ({
                 />
               </SettingRow>
             </SettingCard>
+
+          <AppLockSettings />
 
           <SectionHeader title={t("settings.sessionLogs.title")} />
             <SettingCard className="space-y-4 py-4">
