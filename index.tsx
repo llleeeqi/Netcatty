@@ -14,6 +14,7 @@ import '@fontsource/jetbrains-mono/600.css';
 import App from './App';
 import { ToastProvider } from './components/ui/toast';
 import { TooltipProvider } from './components/ui/tooltip';
+import { AppLockGate } from './components/AppLockGate';
 
 const LazySettingsPage = lazy(() => import('./components/SettingsPage'));
 const LazyTrayPanel = lazy(() => import('./components/TrayPanel'));
@@ -144,36 +145,36 @@ const renderApp = () => {
   const route = getRoute();
   if (route === 'settings') {
     root.render(
-      <ToastProvider>
+      <AppLockGate><ToastProvider>
         <TooltipProvider delayDuration={300}>
           <Suspense fallback={<SettingsWindowFallback />}>
             <LazySettingsPage />
           </Suspense>
         </TooltipProvider>
-      </ToastProvider>
+      </ToastProvider></AppLockGate>
     );
   } else if (route === 'tray') {
     root.render(
-      <ToastProvider>
+      <AppLockGate><ToastProvider>
         <TooltipProvider delayDuration={300}>
           <Suspense fallback={<div style={{ padding: 12, color: '#fff' }}>Loading tray panel…</div>}>
             <LazyTrayPanel />
           </Suspense>
         </TooltipProvider>
-      </ToastProvider>
+      </ToastProvider></AppLockGate>
     );
   } else if (route === 'terminal-popup') {
     root.render(
-      <ToastProvider>
+      <AppLockGate><ToastProvider>
         <TooltipProvider delayDuration={300}>
           <Suspense fallback={<TerminalPopupWindowFallback />}>
             <LazyTerminalPopupPage />
           </Suspense>
         </TooltipProvider>
-      </ToastProvider>
+      </ToastProvider></AppLockGate>
     );
   } else {
-    root.render(<App />);
+    root.render(<AppLockGate><App /></AppLockGate>);
   }
 };
 
