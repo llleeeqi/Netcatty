@@ -24,8 +24,8 @@ export function AppLockSettings() {
     setSaving(true);
     try {
       const config = await createAppLockConfig(pin, Number(timeoutMinutes));
-      localStorage.setItem(APP_LOCK_CONFIG_KEY, JSON.stringify(config));
-      localStorage.setItem(APP_LOCK_STATE_KEY, JSON.stringify({ locked: true, at: Date.now() }));
+      window.localStorage.setItem(APP_LOCK_CONFIG_KEY, JSON.stringify(config));
+      window.localStorage.setItem(APP_LOCK_STATE_KEY, JSON.stringify({ locked: true, at: Date.now() }));
       window.dispatchEvent(new CustomEvent('netcatty:app-lock', { detail: { locked: true } }));
       setPin('');
       setConfirmPin('');
@@ -36,8 +36,8 @@ export function AppLockSettings() {
   };
 
   const disable = () => {
-    localStorage.removeItem(APP_LOCK_CONFIG_KEY);
-    localStorage.removeItem(APP_LOCK_STATE_KEY);
+    window.localStorage.removeItem(APP_LOCK_CONFIG_KEY);
+    window.localStorage.removeItem(APP_LOCK_STATE_KEY);
     window.dispatchEvent(new CustomEvent('netcatty:app-lock', { detail: { locked: false } }));
     setMessage('应用锁已关闭');
   };
