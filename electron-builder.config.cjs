@@ -232,14 +232,15 @@ module.exports = {
     portable: {
         artifactName: '${productName}-${version}-portable-${os}-${arch}.${ext}',
     },
-    nsis: {
+  nsis: {
         oneClick: false,
         perMachine: false,
         allowElevation: true,
         allowToChangeInstallationDirectory: true,
         createDesktopShortcut: true,
         createStartMenuShortcut: true,
-        shortcutName: 'Netcatty'
+    shortcutName: 'Netcatty',
+    include: 'build/installer.nsh'
     },
     linux: {
         // Linux .deb/.rpm/AppImage icons come from build/icons/* (see
