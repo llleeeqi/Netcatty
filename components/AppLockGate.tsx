@@ -9,13 +9,13 @@ import {
 const LOCK_EVENT = 'netcatty:app-lock';
 
 function writeLocked(locked: boolean) {
-  localStorage.setItem(APP_LOCK_STATE_KEY, JSON.stringify({ locked, at: Date.now() }));
+  window.localStorage.setItem(APP_LOCK_STATE_KEY, JSON.stringify({ locked, at: Date.now() }));
   window.dispatchEvent(new CustomEvent(LOCK_EVENT, { detail: { locked } }));
 }
 
 function readLocked(): boolean {
   try {
-    return JSON.parse(localStorage.getItem(APP_LOCK_STATE_KEY) || 'null')?.locked === true;
+    return JSON.parse(window.localStorage.getItem(APP_LOCK_STATE_KEY) || 'null')?.locked === true;
   } catch {
     return false;
   }
