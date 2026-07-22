@@ -36,7 +36,7 @@ export async function verifyAppLockPin(pin: string, config: AppLockConfig): Prom
 
 export function readAppLockConfig(): AppLockConfig | null {
   try {
-    const parsed = JSON.parse(localStorage.getItem(APP_LOCK_CONFIG_KEY) || 'null');
+    const parsed = JSON.parse(window.localStorage.getItem(APP_LOCK_CONFIG_KEY) || 'null');
     if (!parsed || typeof parsed.salt !== 'string' || typeof parsed.verifier !== 'string') return null;
     const timeoutMinutes = Number(parsed.timeoutMinutes);
     if (!Number.isFinite(timeoutMinutes) || timeoutMinutes < 1) return null;
